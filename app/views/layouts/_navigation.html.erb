@@ -2,9 +2,6 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'link', '' %>
-  </li>
 </ul>
 <div class="nav-item btn-group">
   <%= link_to "#", class: "btn btn-small dropdown-toggle", "data-toggle" => "dropdown"  do %>
@@ -14,14 +11,52 @@
     <% Category.all.each do |category| %>
       <li><%= link_to category.name, category_path(category) %></li>
     <% end %>
-    <li class="divider"></li>
-    <li><%= link_to new_category_path do  %>
-          <i class="icon-plus"></i>
-          New Category
-        <% end %>
+    <% if logged_in? %>
+      <li class="divider"></li>
+      <li><%= link_to new_category_path do  %>
+            <i class="icon-plus"></i>
+            New Category
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% if logged_in? %>
+  <div class="nav-item btn-group">
+    <%= link_to "New Post", new_post_path, class: "btn btn-success btn-small" %>
+  </div>
+<div class="nav-item btn-group">
+  <%= link_to "#", class: "btn btn-small dropdown-toggle", "data-toggle" => "dropdown"  do %>
+    <%= current_user.username %> <span class="caret"></span>
+  <% end %>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to edit_user_path(current_user) do %>
+        <i class="icon-pencil"></i>
+        edit profile
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(current_user) do %>
+        <i class="icon-user"></i>
+        view profile
+      <% end %>
+    </li>
+    <li>
+      <%= link_to logout_path do %>
+        <i class="icon-circle-arrow-left"></i>
+        logout
+      <% end %>
     </li>
   </ul>
 </div>
-<div class="nav-item btn-group">
-  <%= link_to "New Post", new_post_path, class: "btn btn-success btn-small" %>
-</div>
+
+<% else %>
+  <div class="nav-item btn-group">
+    <%= link_to "Log in", login_path, class: "btn btn-small" %>
+  </div>
+  <div class="nav-item btn-group">
+  <%= link_to "Register", register_path, class: "btn btn-success btn-small" %>
+  </div>
+<% end %>
+
