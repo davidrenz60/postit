@@ -38,12 +38,12 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @vote = Vote.create(vote: params[:vote], creator: current_user, voteable: @post)
+    vote = Vote.create(vote: params[:vote], creator: current_user, voteable: @post)
 
-    if @vote.valid?
+    if vote.valid?
       flash[:notice] = "Your vote was counted."
     else
-      flash[:error] = "You have already voted for #{@post.title}"
+      flash[:error] = "You have already voted for that post."
     end
 
     redirect_to :back
