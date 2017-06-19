@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+  $('#post_<%= @post.id %>_votes').html('<%= @post.count_votes %> votes');
+<% else %>
+  alert('You have already voted for that post.');
+<% end %>
