@@ -6,5 +6,5 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true
 
-  slugable_column :name
+  sluggable_column :name
 end

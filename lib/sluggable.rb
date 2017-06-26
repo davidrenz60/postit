@@ -39,7 +39,7 @@ module Sluggable
   end
 
   module ClassMethods
-    def slugable_column(col_name)
+    def sluggable_column(col_name)
       self.slug_column = col_name
     end
   end
