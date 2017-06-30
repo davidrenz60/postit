@@ -7,13 +7,18 @@ class PostsController < ApplicationController
     @posts = Post.all.sort_by(&:count_votes).reverse
 
     respond_to do |format|
-      format.json { render json: @posts.to_json }
       format.html
+      format.json { render json: @posts }
     end
   end
 
   def show
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+    end
   end
 
   def new

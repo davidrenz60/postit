@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class= "span0 well text-center">
     <% if logged_in? %>
       <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
@@ -28,6 +27,5 @@
         <%= link_to("#{post.comments.size} comments", post_path(post)) %>
       </span>
     </small>
-    </p>
   </div>
 </div>
