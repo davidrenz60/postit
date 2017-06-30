@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.sort_by(&:count_votes).reverse
+
+    respond_to do |format|
+      format.json { render json: @posts.to_json }
+      format.html
+    end
   end
 
   def show
