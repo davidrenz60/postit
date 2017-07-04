@@ -12,9 +12,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Your account was created. You are now logged in as #{@user.username}."
-      redirect_to root_path
+      if @user.two_factor_auth?
+        configure_two_factor_auth(@user)
+      else
+        login_user(@user)
+      end
     else
       render :new
     end
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :timezone)
+    params.require(:user).permit(:username, :password, :timezone, :phone)
   end
 
   def set_user

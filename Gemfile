@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'twilio-ruby'
 gem 'voteable_drenz', '~> 1.0.1'
 gem 'sluggable_drenz', '~> 0.0.0'
 

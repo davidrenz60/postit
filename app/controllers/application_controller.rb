@@ -17,6 +17,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def login_user(user)
+    session[:user_id] = user.id
+    flash[:notice] = "Welcome #{user.username}, You are logged in."
+    redirect_to root_path
+  end
+
+  def configure_two_factor_auth(user)
+    user.generate_pin!
+    user.send_pin_to_twilio
+    session[:two_factor] = true
+    redirect_to pin_path
+  end
+
   def require_admin
     access_denied unless logged_in? && current_user.admin?
   end

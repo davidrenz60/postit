@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'Enter Verification Code' %>
+
+<p>You will receive a pin number via text message. Please enter it here to login.</p>
+<div class="well">
+  <%= form_tag '/pin' do  %>
+    <div class="control-group">
+        <%= label_tag :pin, 'Pin number' %>
+        <%= text_field_tag :pin %>
+    </div>
+    <%= submit_tag 'Verfiy', class: 'btn btn-success' %>
+  <% end %>
+</div>
