@@ -3,3 +3,27 @@
 <% @posts.each do |post| %>
   <%= render 'post', post: post %>
 <% end %>
+
+<div class="pagination">
+  <ul>
+    <% if @current_page == 1 %>
+      <li class="disabled"><span>Previous</span></li>
+    <% else %>
+      <li><%= link_to "Previous", posts_path(offset: ((@current_page - 2) * Post::PER_PAGE)) %></li>
+    <% end %>
+
+    <% @pages.times do |n| %>
+      <% if n + 1 == @current_page %>
+        <li class="disabled"><span><%= "#{n+1}" %></span></li>
+      <% else %>
+        <li><%= link_to "#{n + 1}", posts_path(offset: (n) * Post::PER_PAGE) %></li>
+      <% end %>
+    <% end %>
+
+    <% if @current_page == @pages %>
+      <li class="disabled"><span>Next</span></li>
+    <% else %>
+      <li><%= link_to "Next", posts_path(offset: (@current_page * Post::PER_PAGE)) %></li>
+    <% end %>
+  </ul>
+</div>

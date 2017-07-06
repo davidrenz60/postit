@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  PER_PAGE = 5
+
   include Sluggable
   include Voteable
 
