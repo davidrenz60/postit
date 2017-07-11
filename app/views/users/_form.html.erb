@@ -11,8 +11,9 @@
         <%= f.password_field :password %>
     </div>
     <div class="control-group">
-        <%= f.label :phone, "Phone Number (required for two-factor authentication)" %>
-        <%= f.text_field :phone %>
+        <label class="checkbox"><input type="checkbox" id="two-factor-toggle">Turn on two-factor authentication</label>
+        <%= f.label :phone %>
+        <%= f.text_field :phone, readonly: true %>
     </div>
     <div class="control-group">
         <%= f.label :timezone %>
