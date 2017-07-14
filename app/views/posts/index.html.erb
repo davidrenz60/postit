@@ -1,3 +1,7 @@
+<% content_for :head do %>
+    <%= javascript_include_tag "posts_index" %>
+<% end %>
+
 <%= render 'shared/content_title', title: 'All Posts' %>
 
 <% @posts.each do |post| %>
